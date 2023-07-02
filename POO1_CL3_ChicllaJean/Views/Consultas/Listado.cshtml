@@ -1,0 +1,67 @@
+﻿@model IEnumerable<POO1_CL3_ChicllaJean.Models.Cliente>
+
+@{
+    ViewBag.Title = "Listado";
+}
+
+<h2>Listado</h2>
+
+<p>
+    @Html.ActionLink("Crear nuevo", "Registro")
+</p>
+
+<div>
+
+    @using (Html.BeginForm("SearchByName", "Consultas", FormMethod.Post))
+    {
+        <em>Iniciales del Nombre </em>
+        @Html.TextBox("nombre", "")
+        <button class="btn btn-primary">Buscar</button>
+    }
+</div>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IdCLiente)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombres)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TipoDocumento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Documento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telefono)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdCLiente)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombres)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TipoDocumento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Documento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Telefono)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.IdCLiente }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.IdCLiente })
+        </td>
+    </tr>
+}
+
+</table>
